@@ -1,3 +1,5 @@
+<% total = @order.total_cents / 100.0 %>
+
 <section class="orders-show">
 
   <header class="page-header">
@@ -6,6 +8,7 @@
 
   <div class="order-summary jumbotron">
     <h4>Thank you for your order!</h4>
+    <p>Total: <%= humanized_money_with_symbol total %></p>
   </div>
 
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
