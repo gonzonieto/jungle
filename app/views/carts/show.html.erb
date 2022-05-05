@@ -4,6 +4,14 @@
     <h1>My Cart</h1>
   </header>
 
+  <% if enhanced_cart.empty? %>
+    <div class="alert alert-info display" role="alert">
+      <%= fa_icon "shopping-cart", class: "" %><h4>Your cart is empty.</h4>
+      These plants aren't going to buy themselves ...
+      <hr>
+      Time to <a href="/" class="alert-link">browse some plants!</a>
+    </div>
+  <% else %>
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
@@ -48,5 +56,6 @@
       <% end %>
     </div>
   </div>
+  <% end %>
 
 </section>
