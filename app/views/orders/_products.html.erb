@@ -1,0 +1,24 @@
+<% img_base = 38 %>
+<% img_x = 5 %>
+<% img_y = 4 %>
+<% img_size = (img_base * img_x).to_s + 'x' + (img_base * img_y).to_s %>
+
+<table class="table">
+    <thead>
+      <tr></tr>
+      <tr scope="col"></tr>
+      <tr scope="col"></tr>
+      <tr scope="col"></tr>
+    </thead>
+    <tbody>
+      <% @products.each do |product| %>
+        <tr class="align-middle">
+          <th scope="row"></th>
+          <td><%= image_tag product[:image], size: img_size, alt: product[:name] %></td>
+          <%= simple_format "<b>#{product[:name]}</b>".concat(' x', product[:quantity].to_s), {}, wrapper_tag: "td" %>
+          <%= simple_format word_wrap(product[:description], line_width: 50), {}, wrapper_tag: "td" %>
+          <%= simple_format humanized_money_with_symbol(product[:price] * product[:quantity]).to_s, {}, wrapper_tag: "td" %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

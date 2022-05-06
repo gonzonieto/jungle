@@ -6,8 +6,4 @@ class Order < ApplicationRecord
 
   validates :stripe_charge_id, presence: true
 
-  def products
-    line_items.map(&:product)
-  end
-
 end
