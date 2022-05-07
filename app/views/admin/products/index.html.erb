@@ -1,30 +1,21 @@
-<section class="admin-products-index">
+<% new_product_button = link_to '+ New Product', [:new, :admin, :product], class:'btn btn-outline-success my-3' %>
 
-  <header class="page-header">
-    <h1>Admin &raquo; All Products</h1>
-  </header>
+<%= tag.section class:'admin-products-index' do %>
+  <%= tag.h1 'Admin Dashboard', class:'display-4 text-center my-4' %>
+  <%= tag.h2 'Products', class:'display-6 text-center my-4' %>
 
-  <div class="well">
-    <%= link_to '+ New Product', [:new, :admin, :product], class: 'btn btn-info' %>
-  </div>
-
-  <div class="panel panel-default products">
-
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th colspan="2">Product</th>
-          <th>Category</th>
-          <th>Price</th>
-          <th>Qty Remaining</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= render @products %>
-      </tbody>
-    </table>
-
-  </div>
-
-</section>
+  <%= tag.div do %>
+    <%= new_product_button %>
+    <%= tag.table class:'table table-bordered' do %>
+      <%= tag.thead tag.tr, class:'text-center' do %>
+        <%= tag.th('Product', colspan: '2') +
+            tag.th('Category') +
+            tag.th('Price') +
+            tag.th('Inventory') +
+            tag.th %>
+      <% end %>
+      <%= tag.tbody render @products %>
+    <% end %>
+    <%= new_product_button %>
+  <% end %>
+<% end %>

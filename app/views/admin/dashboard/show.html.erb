@@ -1,18 +1,18 @@
-<h1 class="display-2 my-4 text-center">Dashboard</h1>
-<div class="d-flex justify-content-center">
-  <div class="card me-4" style="width: fit-content;">
-    <div class="card-body d-flex align-items-center">
-      <span class="card-title fs-2 my-0 me-3">Products: </span>
-      <span class="card-subtitle fs-3 my-0 pe-3 me-3 border-end"><%= @product_count %></span>
-      <%= link_to fa_icon('eye'), [:admin, :products], class: "text-success" %>
-    </div>
-  </div>
+<%= tag.h1 'Dashboard', class:'display-2 my-4 text-center' %>
+<%= tag.div class:'d-flex justify-content-center' do %>
+  <%= tag.div class:'card me-4', style:'width: fit-content' do %>
+    <%= tag.div class:'card-body d-flex align-items-center' do %>
+      <%= tag.span('Products:', class:'card-title fs-2 my-0 me-3') +
+          tag.span(@product_count, class:'card-subtitle fs-3 my-0 pe-3 me-3 border-end') +
+          link_to(fa_icon('eye'), [:admin, :products], class: "text-success") %>
+    <% end %>
+  <% end %>
 
-  <div class="card" style="width: fit-content">
-    <div class="card-body d-flex align-items-center">
-      <span class="card-title fs-2 my-0 me-3">Categories: </span>
-      <span class="card-subtitle fs-3 my-0 pe-3 me-3 border-end text-muted"><%= @category_count %></span>
-      <%= link_to fa_icon('eye'), [:admin, :products], class: "text-success" %>
-    </div>
-  </div>
-</div>
+  <%= tag.div class:'card', style:'width:fit-content' do %>
+    <%= tag.div class:'card-body d-flex align-items-center' do %>
+      <%= tag.span('Categories: ', class:'card-title fs-2 my-0 me-3') +
+          tag.span(@category_count, class:'card-subtitle fs-3 my-0 pe-3 me-3 border-end text-muted') +
+          link_to(fa_icon('eye'), [:admin, :categories], class: "text-success") %>
+    <% end %>
+  <% end %>
+<% end %>

@@ -1,22 +1,8 @@
-<tr>
-  <td>
-    <%= image_tag product.image.tiny.url %>
-  </td>
-  <td>
-    <h4><%= product.name %></h4>
-    <br>
-    <p><%= product.description %></p>
-  </td>
-  <td>
-    <%= product.category.name %>
-  </td>
-  <td>
-    <%= humanized_money_with_symbol product.price %>
-  </td>
-  <td>
-    <%= product.quantity %>
-  </td>
-  <td>
-    <%= link_to fa_icon('trash'), [:admin, product], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
-  </td>
-</tr>
+<%= tag.tr style:'vertical-align:middle' do %>
+  <%= tag.td image_tag product.image.tiny.url %>
+  <%= tag.td tag.h4(product.name) + tag.br + tag.p(truncate product.description, length: 190, separator: ' ') %>
+  <%= tag.td product.category.name.singularize, class: 'text-center' %>
+  <%= tag.td humanized_money_with_symbol(product.price), class: 'text-center' %>
+  <%= tag.td product.quantity, class: 'text-center' %>
+  <%= tag.td link_to fa_icon('trash'), [:admin, product], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>

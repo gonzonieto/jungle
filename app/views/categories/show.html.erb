@@ -1,14 +1,7 @@
-<section class="categories-show">
+<%= tag.section class:'categories-show' do %>
+  <%= tag.header class:'page-header' do %>
+    <%= tag.h1 @category.name + tag.small(pluralize(@products.size, 'product')) %>
+  <% end %>
 
-  <header class="page-header">
-    <h1>
-      <%= @category.name %>
-      <small>(<%= pluralize @products.size, 'product' %>)</small>
-    </h1>
-  </header>
-
-  <div class="products">
-    <%= render @products %>
-  </div>
-
-</section>
+  <%= tag.div render(@products), class:'products' %>
+<% end %>

@@ -1,13 +1,10 @@
-<article>
+<%= tag.article do %>
   <%= link_to product_path(product) do %>
     <%= image_tag product.image.thumb.url , alt: product.name %>
-    <h1>
-      <span><%= product.name %></span>
-      <span><%= humanized_money_with_symbol product.price %></span>
-    </h1>
+    <%= tag.h2 tag.span(product.name) + tag.span(humanized_money_with_symbol product.price) %>
   <% end%>
 
-  <div>
+  <%= tag.div do %>
     <% no_stock = product.quantity.zero? %>
     <% if no_stock %>
       <%= button_tag "Sold Out", class: 'btn soldout', type: 'button' %>
@@ -17,5 +14,5 @@
     disabled: no_stock, method: :post do %>
       <%= fa_icon "shopping-cart", text: 'Add' %> 
     <% end %>
-  </div>
-</article>
+  <% end %>
+<% end %>

@@ -1,61 +1,42 @@
-<section class="cart-show">
+<%= tag.section class:'cart-show' do %>
 
-  <header class="page-header">
-    <h1>My Cart</h1>
-  </header>
+  <%= tag.header tag.h1('My Cart'), class:'page-header' %>
 
   <% if enhanced_cart.empty? %>
-    <div class="alert alert-info display" role="alert">
-      <%= fa_icon "shopping-cart", class: "" %><h4>Your cart is empty.</h4>
+    <%= tag.div class:'alert alert-info display', role:'alert' do %>
+      <%= fa_icon("shopping-cart", class: "") %><%= tag.h4 'Your cart is empty.' %>
       These plants aren't going to buy themselves ...
       <hr>
       Time to <a href="/" class="alert-link">browse some plants!</a>
-    </div>
+    <% end %>
   <% else %>
-  <div class="panel panel-default items">
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th colspan="2">Product</th>
-          <th>Unit Price</th>
-          <th>Quantity</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% enhanced_cart.each do |item| %>
-          <%= render 'item', product: item[:product], quantity: item[:quantity].to_i %>
+    <%= tag.div class:'panel panel-default items col-9 mx-auto' do %>
+      <%= tag.table class:'table' do %>
+        <%= tag.tbody do %>
+          <% enhanced_cart.each do |item| %>
+            <%= render 'item', product: item[:product], quantity: item[:quantity].to_i %>
+          <% end %>
         <% end %>
-      </tbody>
-      <tfoot>
-        <tr>
-          <th colspan="4">
-            TOTAL:
-          </th>
-          <th>
-            <%= humanized_money_with_symbol cart_subtotal_cents / 100.0 %>
-          </th>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-
-  <div class="row">
-    <div class="col-xs-12">
-      <%= form_tag orders_path do %>
-        <script
-          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-amount="<%= cart_subtotal_cents %>"
-          data-name="Jungle"
-          data-description="Khurram Virani's Jungle Order"
-          data-locale="auto"
-          data-email="kvirani@gmail.com"
-          data-currency="cad">
-        </script>
+        <%= tag.tfoot tag.tr tag.th('TOTAL', class:'text-end pe-4', colspan:'4') + tag.th(humanized_money_with_symbol(cart_subtotal_cents / 100.0), class:'text-center') %>
       <% end %>
-    </div>
-  </div>
-  <% end %>
+    <% end %>
 
-</section>
+    <%= tag.div class:'row' do %>
+      <%= tag.div class:'col-xs-12' do %>
+        <%= form_tag orders_path do %>
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-amount="<%= cart_subtotal_cents %>"
+            data-name="Jungle"
+            data-description="Khurram Virani's Jungle Order"
+            data-locale="auto"
+            data-email="kvirani@gmail.com"
+            data-currency="cad">
+          </script>
+        <% end %>
+      <% end %>
+    <% end %>
+
+  <% end %>
+<% end %>
