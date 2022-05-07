@@ -1,0 +1,5 @@
+<% @categories.each do |category| %>
+  <%= tag.tr do %>
+    <%= tag.td(category[:name], class: 'ps-3') + tag.td(category[:product_count], class: 'text-center') %>
+  <% end %>
+<% end %>

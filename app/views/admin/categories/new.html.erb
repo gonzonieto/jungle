@@ -1,0 +1,25 @@
+<%= tag.section class:'admin-categories-new' do %>
+  <%= tag.h1 'Admin » New Category', class:'page-header my-4' %>
+  <%= link_to 'All Categories', [:admin, :categories], class:'btn btn-info well' %>
+
+  <%= tag.div class:'col-sm-6 col-sm-offset-1' do %>
+    <%= form_for [:admin, @category] do |form| %>
+      <% if form.object.errors.any? %>
+        <%= tag.div class:'alert alert-danger' do %>
+          <%= tag.b 'The following errors prevented saving:' %>
+          <%= tag.ul do %>
+            <% form.object.errors.full_messages.each do |error| %>
+              <%= tag.li error %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <%= tag.div form.label(:name) +
+                  form.text_field(:name, class:'form-control'),
+                  class:'form-group' %>
+
+      <%= form.submit 'Create Category', class:'btn btn-primary' %>
+    <% end %>
+  <% end %>
+<% end %>

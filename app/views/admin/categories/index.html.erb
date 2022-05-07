@@ -1,0 +1,20 @@
+<% new_category_button = link_to '+ New Category', [:new, :admin, :category], class: 'btn btn-outline-success w-100 my-3' %>
+
+<%= tag.section class: 'admin-categories-index' do %>
+  <%= tag.h1 'Admin Dashboard', class: 'display-4 text-center my-4' %>
+  <%= tag.h2 'Categories', class: 'display-6 text-center my-4' %>
+
+  <%= tag.div class: 'col-4 mx-auto' do %>
+    <%= new_category_button %>
+    <%= tag.table class: 'table table-bordered' do %>
+      <%= tag.thead class: 'table-dark' do %>
+        <%= tag.tr class: 'text-center' do %>
+          <%= tag.th('Category', style:'width:30rem') +
+              tag.th('Count', style:'width:10rem') %>
+        <% end %>
+      <% end %>
+      <%= tag.tbody render partial: 'categories' %>
+    <% end %>
+    <%= new_category_button %>
+  <% end %>
+<% end %>
