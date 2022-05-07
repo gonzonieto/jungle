@@ -1,10 +1,6 @@
-<%= tag.h1 class: 'display-2 text-center my-5' do %>
-  <%= tag.span 'About', class: 'text-muted' %> JUNGLE
-<% end %>
+<%= tag.h1 (tag.span('About', class: 'text-muted')) + ' JUNGLE', class: 'display-2 text-center my-5' %>
 
-<%= tag.p class: 'lead text-center fs-2 mb-5' do %>
-  We're focused on doing what matters.
-<% end %>
+<%= tag.p "We're focused on doing what matters.", class: 'lead text-center fs-2 mb-5' %>
 
 <%= image_tag "https://i.picsum.photos/id/424/600/600.jpg?hmac=rXwOwaA4ok8cfSFnPo3t4Cj7nxWJ0RucPCurxcy1oTc", size: 450, class: 'mx-auto my-5', style: 'display:block;width:fit-content;' %>
 
@@ -24,6 +20,4 @@
   <br><br>Integer velit elit, cursus ut mattis eget, porta ac lectus. Proin ex urna, aliquet pellentesque tristique ut, sollicitudin ac sem. Praesent lectus odio, laoreet sit amet mi in, ullamcorper tincidunt lorem.
 <% end %>
 
-<%= tag.p class: 'my-4 ms-5 fs-3 text-muted lead' do %>
-  - The <%= tag.span 'JUNGLE', class: 'text-dark' %> Team
-<% end %>
+<%= tag.p tag.span(' - The ') + tag.span('JUNGLE', class: 'text-dark') + ' Team', class: 'my-4 ms-5 fs-3 text-muted lead' %>
