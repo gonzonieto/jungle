@@ -7,15 +7,19 @@ main section.categories-show {
     // justify-content: space-around;
 
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 1.5em;
     grid-template-rows: min-content;
 
     @media screen and (max-width: 1500px) {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
     }
 
     @media screen and (max-width: 1000px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media screen and (max-width: 600px) {
       grid-template-columns: 1fr;
     }
     article {
@@ -69,7 +73,7 @@ main section.categories-show {
         border-top-left-radius: 0.25em;
         border-top-right-radius: 0.25em;
       }
-      h1 {
+      h2 {
         margin: 0;
         padding: 0.25em;
         display: flex;
