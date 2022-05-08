@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  # Used to redirect visitors to /login if not logged in. When a controller is secured with this authorize method, a user will need to log in before they can see the  controller's actions. To secure a controller, add the following line of code to the controller:
+  # before_filter :authorize 
   def authorize
     redirect_to '/login' unless current_user
   end
