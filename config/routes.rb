@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   
   # Render signup form; receive the filled out form and create a new user in the database
   get '/signup' => 'users#new'
-  get '/users' => 'users#create'
+  post '/users' => 'users#create'
 
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]

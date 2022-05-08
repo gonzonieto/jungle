@@ -20,52 +20,45 @@
     >
       <%= tag.span class: 'navbar-toggler-icon' %>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <%# <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          > %>
-            <%# Categories %>
-          <%# </a>
-          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown"> %>
+    
+    <%= tag.div class:'collapse navbar-collapse', id:'navbarSupportedContent' do %>
+      <%= tag.ul class:'navbar-nav align-items-center me-auto mb-2 mb-lg-0 fs-5' do %>
+        <%= tag.li class:'dropdown' do %>    
+          <%= button_tag tag.b('Categories'), class:'btn nav-link dropdown-toggle fs-5', id:'navbarDropdownCategories', type:'button', aria_expanded:'false', data: { bs_toggle:'dropdown' } %>
+          <%= tag.ul class:'dropdown-menu', aria_labelledby:'navbarDropdownCategories' do %>
             <% Category.all.each do |category| %>
-            <li class="nav-item">
-              <%= link_to(category.name, category, class: "nav-link") %>
-            </li>
+              <%= tag.li link_to(category.name, category, class: "dropdown-item fs-5") %>
             <% end %>
-          <%# </ul>
-        </li> %>
-      </ul>
-      <ul class="navbar-nav">
-        <%= tag.li class: 'nav-item dropdown' do %>
-          <a
-            class="nav-link dropdown-toggle text-light"
-            href="#"
-            id="navbarDropdownAdmin"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Admin
-          </a>
-          <%= tag.ul class: 'dropdown-menu dropdown-menu-dark' do %>
-            <%= tag.li link_to('Dashboard', [:admin, :root], class: "nav-link") %>
-            <%= tag.li link_to('Products', [:admin, :products], class: "nav-link") %>
           <% end %>
         <% end %>
         <%= tag.li link_to('About', about_path, class: "nav-link"), class: 'nav-item end-0' %>
-        <li class="nav-item end-0">
-          <%= link_to cart_path, class: "nav-link " do %> <%= fa_icon "shopping-cart" %>
+      <% end %>
+
+      <%= tag.ul class:'navbar-nav' do %>
+        <%= tag.li class:'nav-item dropdown' do %>
+          <%= button_tag tag.b('Admin'), class:'btn nav-link dropdown-toggle fs-5 text-light', id:'navbarDropdownAdmin', type:'button', aria_expanded:'false', data: { bs_toggle:'dropdown' } %>
+          <%= tag.ul class:'dropdown-menu dropdown-menu-dark' do %>
+            <%= tag.li link_to('Dashboard', [:admin, :root], class:'nav-link') %>
+            <%= tag.li link_to('Products', [:admin, :products], class:'nav-link') %>
+          <% end %>
+        <% end %>
+
+        <% if current_user %>
+          <%= tag.span fa_icon("user", class:'me-1') + current_user.name, class:'nav-link text-light' %>
+          <%= tag.li link_to('Logout', '/logout', class:'nav-link'), class:'nav-item' %>
+        <% else %>
+          <%= tag.li link_to('Login', '/login', class:'nav-link'), class:'nav-item' %>
+          <%= tag.li link_to('Register', '/signup', class:'nav-link'), class:'nav-item' %>
+        <% end %>
+
+        <%= tag.li class:'nav-item end-0' do %>
+          <%= link_to cart_path, class: 'nav-link' do %> <%= fa_icon "shopping-cart" %>
           My Cart (<%= cart.size %>) <% end %>
-        </li>
-      </ul>
-    </div>
+        <% end %>
+      <% end %>
+
+    <% end %>
+
   </div>
 </nav>
 <script>
