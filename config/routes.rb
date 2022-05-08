@@ -4,10 +4,14 @@ Rails.application.routes.draw do
   get 'static_pages/help'
   get 'static_pages/faq'
   get 'about' => 'about#index'
+
+  # Show login form; log in user; log out user
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
   
-  # Render signup form
+  # Render signup form; receive the filled out form and create a new user in the database
   get '/signup' => 'users#new'
-  # Receive the filled out user form and create a new user in the database
   get '/users' => 'users#create'
 
   resources :products, only: [:index, :show]
@@ -20,7 +24,7 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:create, :show]
 
-  # Create the Admin namespace, which is a Module
+  # Create Admin namespace, which is a Module
   namespace :admin do
     root to: 'dashboard#show'
     resources :products, except: [:edit, :update, :show]
