@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   get 'static_pages/help'
   get 'static_pages/faq'
   get 'about' => 'about#index'
+  
+  # Render signup form
+  get '/signup' => 'users#new'
+  # Receive the filled out user form and create a new user in the database
+  get '/users' => 'users#create'
 
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
