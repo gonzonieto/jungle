@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
+  root to: 'products#index'
   get 'static_pages/help'
   get 'static_pages/faq'
   get 'about' => 'about#index'
-  root to: 'products#index'
 
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :orders, only: [:create, :show]
 
+  # Create the Admin namespace, which is a Module
   namespace :admin do
     root to: 'dashboard#show'
     resources :products, except: [:edit, :update, :show]
