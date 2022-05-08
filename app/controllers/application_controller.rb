@@ -4,6 +4,17 @@ class ApplicationController < ActionController::Base
   
   protect_from_forgery with: :exception
 
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+  helper_method :current_user
+
+  # Used to redirect visitors to /login if not logged in. When a controller is secured with this authorize method, a user will need to log in before they can see the  controller's actions. To secure a controller, add the following line of code to the controller:
+  # before_filter :authorize 
+  def authorize
+    redirect_to '/login' unless current_user
+  end
+
   private
 
   def cart
