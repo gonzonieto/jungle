@@ -1,7 +1,5 @@
 ## Functional Requirements
 
-This section lists the functional specs that our mentors will be sampling when evaluating your project submission.
-
 #### Feature: Sold Out Badge
 
 - [ ] Major: When a product has 0 quantity, a sold out badge should be displayed on the product list page
