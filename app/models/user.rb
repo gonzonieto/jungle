@@ -2,9 +2,19 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  validates :email, uniqueness: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
+  validates :password, confirmation: true, length: { minimum: 8 }
+  validates :password_confirmation, presence: true
 
-  # TODO: Add validations including:
-  #   - email address presence and uniqueness
-  
+  def self.authenticate_with_credentials(email, password)
+    user = User.find_by(email: email.strip!)
+    if [user, email, password].any?(nil)
+      return nil
+    end
+    
+    authenticate(password) || nil
+  end
+
 end

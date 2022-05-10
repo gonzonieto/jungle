@@ -44,7 +44,7 @@
         <% end %>
 
         <% if current_user %>
-          <%= tag.span fa_icon("user", class:'me-1') + current_user.name, class:'nav-link text-light' %>
+          <%= tag.span fa_icon("user", class:'me-1') + current_user.first_name, class:'nav-link text-light' %>
           <%= tag.li link_to('Logout', '/logout', class:'nav-link'), class:'nav-item' %>
         <% else %>
           <%= tag.li link_to('Login', '/login', class:'nav-link'), class:'nav-item' %>
