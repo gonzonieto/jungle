@@ -1,12 +1,23 @@
-<h1>Signup!</h1>
+<%= tag.h1 'Signup!', class:'text-center my-4' %>
 
-<%= form_for :user, url: '/users' do |f| %>
+<%= form_for :user, url: '/users', html: { class:'d-flex flex-column justify-content-between mx-auto text-center text-secondary', style:'width:35%;height:30rem' } do |f| %>
 
-  First Name: <%= f.text_field :first_name %>
-  Last Name: <%= f.text_field :last_name %>
-  Email: <%= f.text_field :email %>
-  Password: <%= f.password_field :password %>
-  Password Confirmation: <%= f.password_field :password_confirmation %>
-  <%= f.submit "Submit" %>
+
+  <%= f.label(:first_name) %>
+  <%= f.text_field(:first_name) %>
+
+  <%= f.label(:last_name) %>
+  <%= f.text_field(:last_name) %>
+
+  <%= f.label(:email) %>
+  <%= f.text_field(:email) %>
+
+  <%= f.label(:password) %>
+  <%= f.password_field(:password) %>
+
+  <%= f.label(:password_confirmation, 'Confirm') %>
+  <%= f.password_field(:password_confirmation) %>
+
+  <%= f.submit "Submit", class:'my-2' %>
 
 <% end %>

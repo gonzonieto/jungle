@@ -1,6 +1,7 @@
 <%= tag.section class:'categories-show' do %>
   <%= tag.header class:'page-header' do %>
-    <%= tag.h1 @category.name + tag.small(pluralize(@products.size, 'product')) %>
+    <%= tag.h1(@category.name) %>
+    <%= tag.small(pluralize(@products.size, 'product')) %>
   <% end %>
 
   <%= tag.div render(@products), class:'products' %>
